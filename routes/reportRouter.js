@@ -1,8 +1,9 @@
 const express = require("express");
-const router = express.Router();
-const reportController = require("../controllers/reportControllers");
-const authMiddleware = require("../middleware/authMiddleware");
+const reportController = require("../controllers/reportController");
 
-router.get("/employee/:id", authMiddleware, reportController.getEmployeeReport);
+const router = express.Router();
+
+router.get("/employee/:id", reportController.getEmployeeReport);
+router.get("/department/:department", reportController.getDepartmentReport);
 
 module.exports = router;

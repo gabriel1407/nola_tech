@@ -32,9 +32,7 @@ exports.login = async (req, res) => {
       user: {
         id: user._id,
         username: user.username,
-        role: user.role,
-        createdAt: user.created_at,
-        updatedAt: user.update_at,
+        role: user.role
       },
     });
   } catch (error) {

@@ -1,15 +1,12 @@
 const express = require("express");
-const router = express.Router();
-const evaluationController = require("../controllers/evaluationControllers");
-const authMiddleware = require("../middleware/authMiddleware");
+const evaluationController = require("../controllers/evaluationController");
 
-router.post("/", authMiddleware, evaluationController.createEvaluation);
-router.get("/:id", authMiddleware, evaluationController.getEvaluationById);
-router.put("/:id", authMiddleware, evaluationController.updateEvaluation);
-router.get(
-  "/employee/:id",
-  authMiddleware,
-  evaluationController.getEvaluationsByEmployee
-);
+const router = express.Router();
+
+router.post("/", evaluationController.createEvaluation);
+router.get("/", evaluationController.getEvaluations);
+router.get("/:id", evaluationController.getEvaluationById);
+router.put("/:id", evaluationController.updateEvaluation);
+router.put("/:id/submit", evaluationController.submitEvaluation);
 
 module.exports = router;
