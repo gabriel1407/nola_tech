@@ -7,8 +7,9 @@ const evaluationSchema = new mongoose.Schema({
     required: true,
   },
   period: { type: String, required: true },
+  questions: {type: String, required: true},
   status: { type: String, enum: ['Pending', 'Completed'], default: 'Pending' },
-  questions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Question' }],
+  type: { type: String, enum: ['Text', 'MultipleChoice'], required: true },
 }, 
 { timestamps: true });
 

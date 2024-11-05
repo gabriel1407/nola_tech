@@ -1,4 +1,4 @@
-const Evaluation = require('../models/Evaluation');
+const Evaluation = require('../models/evaluation');
 
 exports.createEvaluation = async (req, res) => {
     try {

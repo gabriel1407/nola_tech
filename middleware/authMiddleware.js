@@ -28,4 +28,24 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-module.exports = authMiddleware;
+// Middleware para verificar rol
+const veryfyRole = (requiredRole) => {
+  return (req, res, next) => {
+      if (!req.user || req.user.role !== requiredRole) {
+          return res.status(403).json({ message: "Access denied. Insufficient permissions." });
+      }
+      next();
+  };
+};
+
+// Middleware para verificar múltiples roles
+const verifyRoles = (allowedRoles) => {
+  return (req, res, next) => {
+      if (!req.user || !allowedRoles.includes(req.user.role)) {
+          return res.status(403).json({ message: "Access denied. Insufficient permissions." });
+      }
+      next();
+  };
+};
+
+module.exports = {authMiddleware, veryfyRole, verifyRoles};

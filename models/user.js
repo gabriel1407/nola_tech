@@ -8,7 +8,10 @@ const userSchema = new mongoose.Schema(
     last_name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     phone: { type: String, required: true },
+    age: { type: Number, required: true },
+    gender: { type: String, required: true },
     departament: { type: String, required: true },
+    position: { type: String, required: true }, //Cargo profesional
     role: {
       type: String,
       enum: ["Admin", "Manager", "Employee"],
