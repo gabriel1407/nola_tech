@@ -1,4 +1,5 @@
 const Evaluation = require('../models/evaluation');
+const { notifyEvaluator } = require("../controllers/notifyControllers");
 
 exports.createEvaluation = async (req, res) => {
     try {
@@ -50,5 +51,49 @@ exports.submitEvaluation = async (req, res) => {
         res.json({ message: "Evaluation submitted successfully" });
     } catch (error) {
         res.status(500).json({ message: "Error submitting evaluation", error });
+    }
+};
+
+exports.calculateScore = (evaluationData) => {
+  const { criteria } = evaluationData;
+
+  const totalScore = criteria.reduce(
+    (sum, item) => sum + item.score * item.weight,
+    0
+  );
+  return totalScore;
+};
+
+exports.assignEvaluator = async (employeeId) => {
+  const evaluators = await User.find({ role: "Manager" });
+  const randomEvaluator =
+    evaluators[Math.floor(Math.random() * evaluators.length)];
+  return randomEvaluator._id;
+};
+
+
+
+exports.assignEvaluation = async (req, res) => {
+    try {
+        const { employeeId, evaluatorId, name, period, type } = req.body;
+        
+        // Crear evaluación
+        const evaluation = new Evaluation({
+            name,
+            employeeId,
+            assignedEvaluator: evaluatorId,
+            period,
+            type,
+            status: "Pending",
+        });
+        
+        await evaluation.save();
+
+        // Crear notificación para el evaluador
+        await notifyEvaluator(evaluatorId, evaluation._id);
+
+        res.status(201).json({ message: "Evaluación asignada y notificación creada", evaluation });
+    } catch (error) {
+        res.status(500).json({ message: "Error al asignar evaluación", error });
     }
 };

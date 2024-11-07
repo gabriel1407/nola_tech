@@ -1,12 +1,11 @@
 const express = require("express");
-const questionController = require("../controllers/questionController");
+const questionController = require("../controllers/questionControllers");
+const { verifyToken, verifyRoles } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.post("/", questionController.createQuestion);
-router.get("/", questionController.getQuestions);
-router.get("/:id", questionController.getQuestionById);
-router.put("/:id", questionController.updateQuestion);
-router.delete("/:id", questionController.deleteQuestion);
+router.post("/", verifyToken, verifyRoles(["Admin", "Manager"]),questionController.createQuestion);
+router.get("/", verifyToken, verifyRoles(["Admin", "Manager"]),questionController.getQuestions);
+router.put("/:id", verifyToken, verifyRoles(["Admin", "Manager"]),questionController.updateQuestion);
 
 module.exports = router;

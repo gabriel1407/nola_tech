@@ -1,4 +1,4 @@
-const Question = require('../models/question');
+const Question = require('../models/response_question');
 
 exports.createQuestion = async (req, res) => {
     try {
@@ -19,16 +19,6 @@ exports.getQuestions = async (req, res) => {
     }
 };
 
-exports.getQuestionById = async (req, res) => {
-    try {
-        const question = await Question.findById(req.params.id);
-        if (!question) return res.status(404).json({ message: "Question not found" });
-        res.json(question);
-    } catch (error) {
-        res.status(500).json({ message: "Error retrieving question", error });
-    }
-};
-
 exports.updateQuestion = async (req, res) => {
     try {
         const question = await Question.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -36,15 +26,5 @@ exports.updateQuestion = async (req, res) => {
         res.json(question);
     } catch (error) {
         res.status(500).json({ message: "Error updating question", error });
-    }
-};
-
-exports.deleteQuestion = async (req, res) => {
-    try {
-        const question = await Question.findByIdAndDelete(req.params.id);
-        if (!question) return res.status(404).json({ message: "Question not found" });
-        res.json({ message: "Question deleted successfully" });
-    } catch (error) {
-        res.status(500).json({ message: "Error deleting question", error });
     }
 };

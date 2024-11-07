@@ -2,13 +2,46 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
+
 exports.register = async (req, res) => {
   try {
-    const { username, password, role } = req.body;
+    // Desestructurar todos los campos requeridos de la solicitud
+    const {
+      username,
+      password,
+      role,
+      position,
+      departament,
+      gender,
+      age,
+      first_name,
+      last_name,
+      phone,
+      email,
+    } = req.body;
+
+    // Hashear la contraseña
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ username, password: hashedPassword, role });
+
+    // Crear el nuevo usuario con todos los campos requeridos
+    const user = new User({
+      username,
+      password: hashedPassword,
+      role,
+      position,
+      departament,
+      gender,
+      age,
+      first_name,
+      last_name,
+      phone,
+      email,
+    });
+
+    // Guardar el usuario en la base de datos
     await user.save();
-    res.status(201).json({ message: "Usuario registrado exitosamente", data: user });
+
+    res.status(201).json({ message: "Usuario registrado exitosamente", user });
   } catch (error) {
     res.status(500).json({ message: "Error en el registro", error });
   }

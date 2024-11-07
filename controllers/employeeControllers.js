@@ -12,7 +12,9 @@ exports.createEmployee = async (req, res) => {
 
 exports.getEmployees = async (req, res) => {
   try {
-      const employees = await Employee.find();
+      const employees = await Employee.find().select(
+        "_id username first_name last_name role position age email phone departament"
+      );
       res.json(employees);
   } catch (error) {
       res.status(500).json({ message: "Error retrieving employees", error });
