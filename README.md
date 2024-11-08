@@ -1,78 +1,79 @@
 API de Evaluación 360
-Esta API es un sistema de gestión de evaluaciones 360 para empleados. Permite a los usuarios (empleados, gerentes y administradores) realizar evaluaciones, responder preguntas, generar reportes y administrar datos relacionados con empleados, evaluaciones, preguntas y respuestas.
+Una API diseñada para gestionar evaluaciones 360 de empleados. Ofrece funcionalidades para que administradores, gerentes y empleados puedan gestionar evaluaciones, responder preguntas, generar reportes y administrar datos relacionados con empleados, evaluaciones y respuestas.
 
 Características principales
 Autenticación y Autorización:
 Basado en JWT (JSON Web Tokens).
 Roles definidos: admin, manager, empleado.
 Gestión de empleados:
-CRUD de empleados.
+Crear, listar, actualizar y eliminar empleados.
 Gestión de evaluaciones:
 Crear y listar evaluaciones.
 Responder preguntas en evaluaciones.
 Enviar y completar evaluaciones.
 Gestión de preguntas:
-CRUD de preguntas.
+CRUD (Crear, Leer, Actualizar y Eliminar) de preguntas.
 Generación de reportes:
-Reportes por departamento.
-Reportes por empleado.
+Reportes detallados por empleado.
+Reportes generales por departamento.
 Validaciones:
-Valida los datos enviados en las solicitudes usando express-validator.
+Valida los datos enviados en las solicitudes utilizando express-validator.
 Documentación:
 Documentación automática generada con Swagger.
 Requisitos previos
 Node.js: versión 14 o superior.
-MongoDB: base de datos NoSQL en ejecución local o remota.
-Postman (opcional): para probar los servicios.
+MongoDB: base de datos NoSQL (en ejecución local o remota).
+Postman (opcional): para probar los servicios de la API.
 Instalación
-Clonar el repositorio
-
+1. Clonar el repositorio
+bash
+Copiar código
 git clone <URL-del-repositorio>
 cd <nombre-del-repositorio>
-Instalar dependencias
+2. Instalar dependencias
 bash
+Copiar código
 npm install
-Configurar variables de entorno
-Crea un archivo .env en la raíz del proyecto basado en .env.example y configura las siguientes variables:
+3. Configurar las variables de entorno
+Crea un archivo .env en la raíz del proyecto basado en .env.example y define las siguientes variables:
 
+plaintext
+Copiar código
 PORT=5000
 MONGO_URI=mongodb://localhost:27017/evaluacion360
 JWT_SECRET=tu_clave_secreta
 Ejecución del proyecto
-En modo desarrollo
-Usa el siguiente comando para iniciar el servidor en modo desarrollo:
-
+Modo desarrollo
 bash
 Copiar código
 npm run dev
 El servidor estará disponible en http://localhost:5000.
 
-En modo producción
-Usa el siguiente comando para iniciar el servidor en modo producción:
-
+Modo producción
 bash
-npm test
+Copiar código
+npm start
 Documentación de la API
-La documentación de la API está disponible en Swagger. Una vez que el servidor esté en funcionamiento, accede a:
+La documentación está disponible a través de Swagger. Una vez que el servidor esté en funcionamiento, accede a:
 
 bash
 Copiar código
 http://localhost:5000/api-docs
-Esta documentación contiene detalles sobre cada endpoint, los parámetros esperados y las respuestas posibles.
+Allí encontrarás detalles sobre los endpoints, parámetros esperados y respuestas posibles.
 
-Estructura del Proyecto
+Estructura del proyecto
 plaintext
 Copiar código
 src/
-├── config/               # Configuración de base de datos y Swagger
-├── controllers/          # Controladores que manejan la lógica de cada recurso
+├── config/               # Configuración de la base de datos y Swagger
+├── controllers/          # Lógica de cada recurso (auth, empleados, evaluaciones, etc.)
 ├── middleware/           # Middlewares para autenticación, validación, etc.
 ├── models/               # Modelos de MongoDB (Employee, Evaluation, etc.)
 ├── routes/               # Rutas de la API (empleados, evaluaciones, preguntas, etc.)
-├── utils/                # Utilidades como cálculos y asignación
+├── utils/                # Utilidades (funciones de cálculo, asignación, etc.)
 ├── app.js                # Configuración principal de la aplicación
 ├── server.js             # Punto de entrada del servidor
-Uso de los Servicios
+Uso de los servicios
 1. Autenticación
 Registro
 POST /api/auth/register
@@ -80,6 +81,7 @@ POST /api/auth/register
 Cuerpo de la solicitud:
 
 json
+Copiar código
 {
   "username": "adminuser",
   "password": "password123",
@@ -96,23 +98,19 @@ Copiar código
   "username": "adminuser",
   "password": "password123"
 }
-Respuesta:
+Incluye el token en el encabezado Authorization:
 
-json
-{
-  "token": "tu_token_jwt"
-}
-Incluye este token en el encabezado Authorization para las solicitudes protegidas:
-
-makefile
+plaintext
+Copiar código
 Authorization: Bearer <token>
-2. Gestión de Empleados
+2. Gestión de empleados
 Crear empleado
 POST /api/employees
 
 Cuerpo de la solicitud:
 
 json
+Copiar código
 {
   "first_name": "John",
   "last_name": "Doe",
@@ -127,13 +125,14 @@ json
 Listar empleados
 GET /api/employees
 
-3. Gestión de Evaluaciones
+3. Gestión de evaluaciones
 Crear evaluación
 POST /api/evaluations
 
 Cuerpo de la solicitud:
 
 json
+Copiar código
 {
   "employeeId": "64a1f49c71c3c7f915a7b92b",
   "period": "2023 Q4",
@@ -145,19 +144,21 @@ POST /api/evaluations/:id/submit
 Cuerpo de la solicitud:
 
 json
+Copiar código
 {
   "answers": [
     { "questionId": "64a1f5a071c3c7f915a7b92c", "answer": "Muy bueno" },
     { "questionId": "64a1f5b271c3c7f915a7b92d", "answer": "Satisfactorio" }
   ]
 }
-4. Gestión de Preguntas
+4. Gestión de preguntas
 Crear pregunta
 POST /api/questions
 
 Cuerpo de la solicitud:
 
 json
+Copiar código
 {
   "text": "¿Cómo calificarías tu experiencia en el último proyecto?",
   "type": "text"
@@ -169,9 +170,10 @@ GET /api/questions
 Reporte por empleado
 GET /api/reports/employee/:id
 
-Respuesta:
+Ejemplo de respuesta:
 
 json
+Copiar código
 {
   "employeeId": "64a1f49c71c3c7f915a7b92b",
   "evaluations": [
@@ -185,9 +187,10 @@ json
 Reporte por departamento
 GET /api/reports/department/:name
 
-Respuesta:
+Ejemplo de respuesta:
 
 json
+Copiar código
 {
   "departmentName": "Engineering",
   "report": [
@@ -205,12 +208,9 @@ json
   ]
 }
 Pruebas
-Ejecutar Pruebas
-Para ejecutar las pruebas unitarias:
-
+Ejecutar pruebas
 bash
 Copiar código
 npm test
 Colección de Postman
-Incluimos una colección de Postman (postman_collection.json) en el proyecto para facilitar la prueba de los endpoints. Importa el archivo en Postman y utiliza los ejemplos de solicitudes para probar la API.
-
+Incluimos una colección de Postman (postman_collection.json) en el proyecto. Importa el archivo en Postman para probar los endpoints de la API.
