@@ -1,0 +1,398 @@
+{
+	"info": {
+		"_postman_id": "bbf90aca-cb36-455f-b53b-5e99c43dd608",
+		"name": "nola_tech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19530566",
+		"_collection_link": "https://grey-eclipse-954969.postman.co/workspace/Espacio-Gabriel~1df33ef2-cda1-4585-a44d-789a92b6d9f8/collection/19530566-bbf90aca-cb36-455f-b53b-5e99c43dd608?action=share&source=collection_link&creator=19530566"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"gabriel1407\",\r\n    \"password\": \"carvajal1407\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/auth/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Registrar usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"empleado1\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"empleado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/auth/register"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "Consultar empleados",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3MmVmYjFhYjU4ZTQ0MWJjYjdkNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAzMjQzOH0.tlup37tfL3zzLEmdfhKvXSocRjE7NZ5k8uANF6YH3q8"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/employees"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear empleados",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3MmVmYjFhYjU4ZTQ0MWJjYjdkNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAzMjg4OX0.AFubmo_PRYWBgRdtR5Kkz06byM5x7pWUWLNpHbjLlIc"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"first_name\": \"Jose\",\r\n    \"last_name\": \"Castro\",\r\n    \"position\": \"Programador Frontend\",\r\n    \"department\": \"Sistema\",\r\n    \"gender\": \"Masculino\",\r\n    \"age\": 33,\r\n    \"phone\": \"4246209533\",\r\n    \"email\": \"castro@gmail.com\",\r\n    \"user_id\": \"672d7bb2d663d7c844e0f04c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/employees"
+					},
+					"response": []
+				},
+				{
+					"name": "editar empleado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3MmVmYjFhYjU4ZTQ0MWJjYjdkNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAzMjg4OX0.AFubmo_PRYWBgRdtR5Kkz06byM5x7pWUWLNpHbjLlIc"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Gabriel\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/employees/672d78b89d32b443f83d9f95"
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar empleados por id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3MmVmYjFhYjU4ZTQ0MWJjYjdkNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAzMjg4OX0.AFubmo_PRYWBgRdtR5Kkz06byM5x7pWUWLNpHbjLlIc"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/employees/672d78b89d32b443f83d9f95"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Evaluations",
+			"item": [
+				{
+					"name": "Consultar evaluaciones",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3MmVmYjFhYjU4ZTQ0MWJjYjdkNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAzMjg4OX0.AFubmo_PRYWBgRdtR5Kkz06byM5x7pWUWLNpHbjLlIc"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/evaluations"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear evaluacion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3MmVmYjFhYjU4ZTQ0MWJjYjdkNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAzMjg4OX0.AFubmo_PRYWBgRdtR5Kkz06byM5x7pWUWLNpHbjLlIc"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employeeId\": \"672d7c81d663d7c844e0f04f\",\r\n    \"period\": \"inicio\",\r\n    \"status\": \"pending\",\r\n    \"type\": \"formulario\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/evaluations"
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar evaluaciones por id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3MmVmYjFhYjU4ZTQ0MWJjYjdkNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAzMjg4OX0.AFubmo_PRYWBgRdtR5Kkz06byM5x7pWUWLNpHbjLlIc"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/evaluations/672d7dc4efcf6fa21e49625f"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar evaluación",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3MmVmYjFhYjU4ZTQ0MWJjYjdkNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAzMjg4OX0.AFubmo_PRYWBgRdtR5Kkz06byM5x7pWUWLNpHbjLlIc"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"type\": \"exposicion\"\r\n    //\"status\": \"pending\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/evaluations/672d7dc4efcf6fa21e49625f"
+					},
+					"response": []
+				},
+				{
+					"name": "Enviar evaluación completada",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3YmIyZDY2M2Q3Yzg0NGUwZjA0YyIsInJvbGUiOiJlbXBsZWFkbyIsImlhdCI6MTczMTAzNDg4M30.LXcp9C9OoXPRJBdQHqbfIC1dV5F2Vru8ImLvu30yV2U"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"answers\": [\r\n        {\r\n            \"score\": 4\r\n        },\r\n        {\r\n            \"score\": 3\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/evaluations/672d7fc7efcf6fa21e49626a/submit"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Report",
+			"item": []
+		},
+		{
+			"name": "Question",
+			"item": [
+				{
+					"name": "Consultar preguntas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3MmVmYjFhYjU4ZTQ0MWJjYjdkNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAzNTUxOH0.kLCvUQ4Z5iyKV4zTXLI5LCqp018n3wzeLPinmNWWlXs"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/questions"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear preguntas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3MmVmYjFhYjU4ZTQ0MWJjYjdkNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAzNTUxOH0.kLCvUQ4Z5iyKV4zTXLI5LCqp018n3wzeLPinmNWWlXs"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Como se puede crear una base de datos\",\r\n    \"type\": \"text\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/questions"
+					},
+					"response": []
+				},
+				{
+					"name": "Editar pregunta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3MmVmYjFhYjU4ZTQ0MWJjYjdkNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAzNTUxOH0.kLCvUQ4Z5iyKV4zTXLI5LCqp018n3wzeLPinmNWWlXs"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Como configurar un ambiente de desarrollo en nodejs\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/questions/672d81f7995879b1b9a86f06"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Respuesta",
+			"item": [
+				{
+					"name": "crear respuesta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3YmIyZDY2M2Q3Yzg0NGUwZjA0YyIsInJvbGUiOiJlbXBsZWFkbyIsImlhdCI6MTczMTAzNjU5OX0.HwJr2UjpcMIF7ypWcpB9UgRkE6Cm6VemAOZDZDdCgTM"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"answer\": \"Usando npm y instalando las librerias y modulos para crear el proyecto\",\r\n    \"questionId\": \"672d81f7995879b1b9a86f06\",\r\n    \"evaluationId\": \"672d7fc7efcf6fa21e49626a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/responses"
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar evaluación por id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3YmIyZDY2M2Q3Yzg0NGUwZjA0YyIsInJvbGUiOiJlbXBsZWFkbyIsImlhdCI6MTczMTAzNjU5OX0.HwJr2UjpcMIF7ypWcpB9UgRkE6Cm6VemAOZDZDdCgTM"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/responses/evaluation/672d7fc7efcf6fa21e49626a"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reporte",
+			"item": [
+				{
+					"name": "Generación de reporte de evaluacion por empleado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3MmVmYjFhYjU4ZTQ0MWJjYjdkNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAzNzk0M30.3fI4_dJlagP4JV31qaHM443PhP8p57V6IOjmS1Xh7L4"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/reports/employee/672d7c81d663d7c844e0f04f"
+					},
+					"response": []
+				},
+				{
+					"name": "Generar reporte por deparamento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmQ3MmVmYjFhYjU4ZTQ0MWJjYjdkNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMTAzNzk0M30.3fI4_dJlagP4JV31qaHM443PhP8p57V6IOjmS1Xh7L4"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/reports/department/Sistema"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
