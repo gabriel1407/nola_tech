@@ -27,18 +27,16 @@ Postman (opcional): para probar los servicios de la API.
 Instalación
 1. Clonar el repositorio
 bash
-Copiar código
+
 git clone <URL-del-repositorio>
 cd <nombre-del-repositorio>
 2. Instalar dependencias
 bash
-Copiar código
+
 npm install
 3. Configurar las variables de entorno
 Crea un archivo .env en la raíz del proyecto basado en .env.example y define las siguientes variables:
 
-plaintext
-Copiar código
 PORT=5000
 MONGO_URI=mongodb://localhost:27017/evaluacion360
 JWT_SECRET=tu_clave_secreta
@@ -51,13 +49,11 @@ El servidor estará disponible en http://localhost:5000.
 
 Modo producción
 bash
-Copiar código
 npm start
 Documentación de la API
 La documentación está disponible a través de Swagger. Una vez que el servidor esté en funcionamiento, accede a:
 
 bash
-Copiar código
 http://localhost:5000/api-docs
 Allí encontrarás detalles sobre los endpoints, parámetros esperados y respuestas posibles.
 
@@ -81,7 +77,6 @@ POST /api/auth/register
 Cuerpo de la solicitud:
 
 json
-Copiar código
 {
   "username": "adminuser",
   "password": "password123",
@@ -93,7 +88,7 @@ POST /api/auth/login
 Cuerpo de la solicitud:
 
 json
-Copiar código
+
 {
   "username": "adminuser",
   "password": "password123"
@@ -110,7 +105,7 @@ POST /api/employees
 Cuerpo de la solicitud:
 
 json
-Copiar código
+
 {
   "first_name": "John",
   "last_name": "Doe",
@@ -132,7 +127,7 @@ POST /api/evaluations
 Cuerpo de la solicitud:
 
 json
-Copiar código
+
 {
   "employeeId": "64a1f49c71c3c7f915a7b92b",
   "period": "2023 Q4",
@@ -144,7 +139,7 @@ POST /api/evaluations/:id/submit
 Cuerpo de la solicitud:
 
 json
-Copiar código
+
 {
   "answers": [
     { "questionId": "64a1f5a071c3c7f915a7b92c", "answer": "Muy bueno" },
@@ -158,7 +153,7 @@ POST /api/questions
 Cuerpo de la solicitud:
 
 json
-Copiar código
+
 {
   "text": "¿Cómo calificarías tu experiencia en el último proyecto?",
   "type": "text"
@@ -173,7 +168,7 @@ GET /api/reports/employee/:id
 Ejemplo de respuesta:
 
 json
-Copiar código
+
 {
   "employeeId": "64a1f49c71c3c7f915a7b92b",
   "evaluations": [
@@ -190,7 +185,7 @@ GET /api/reports/department/:name
 Ejemplo de respuesta:
 
 json
-Copiar código
+
 {
   "departmentName": "Engineering",
   "report": [
@@ -210,7 +205,7 @@ Copiar código
 Pruebas
 Ejecutar pruebas
 bash
-Copiar código
+
 npm test
 Colección de Postman
 Incluimos una colección de Postman (postman_collection.json) en el proyecto. Importa el archivo en Postman para probar los endpoints de la API.
